@@ -61,7 +61,7 @@ jobs:
         run: python -m pytest tests $COVERAGE_FLAGS
 
       - name: Adjust coverage file for Codecov
-        run: bash <(sed 's/filename=\"/filename=\"pennylane\//g' coverage.xml)
+        run: bash <(sed -i .orig 's/filename=\"/filename=\"pennylane\//g' coverage.xml)
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
@@ -121,7 +121,7 @@ jobs:
             --shots=${{ matrix.config.shots }} $COVERAGE_FLAGS
 
       - name: Adjust coverage file for Codecov
-        run: bash <(sed 's/filename=\"/filename=\"pennylane\//g' coverage.xml)
+        run: bash <(sed -i .orig 's/filename=\"/filename=\"pennylane\//g' coverage.xml)
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
