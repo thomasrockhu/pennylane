@@ -3,7 +3,6 @@ fixes:
 
 ignore:
   - "pennylane/devices/tests/*"
-  - "home/runner/work/pennylane/pennylane/pennylane/::pennylane/" 
 
 codecov:
   notify:
