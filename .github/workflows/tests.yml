@@ -10,7 +10,6 @@ env:
   TF_VERSION: 2.3
   TORCH_VERSION: 1.6
   COVERAGE_FLAGS: "--cov=pennylane --cov-report=term-missing --cov-report=xml --no-flaky-report -p no:warnings --tb=native"
-  ADJUST_COVERAGE: "sed -i 's/filename=\"/filename=\"pennylane\//g' coverage.xml"
 
 
 jobs:
@@ -62,7 +61,7 @@ jobs:
         run: python -m pytest tests $COVERAGE_FLAGS
 
       - name: Adjust coverage file for Codecov
-        run: sed 's/filename=\"/filename=\"pennylane\//g' coverage.xml
+        run: bash <(sed 's/filename=\"/filename=\"pennylane\//g' coverage.xml)
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
@@ -122,7 +121,7 @@ jobs:
             --shots=${{ matrix.config.shots }} $COVERAGE_FLAGS
 
       - name: Adjust coverage file for Codecov
-        run: sed 's/filename=\"/filename=\"pennylane\//g' coverage.xml
+        run: bash <(sed 's/filename=\"/filename=\"pennylane\//g' coverage.xml)
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
